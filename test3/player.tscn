@@ -17,13 +17,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5mi0"]
 size = Vector2(64, 64)
 
-[node name="Player" type="Node2D"]
+[node name="player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_70xra")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5r53d")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="AnimatedSprite2D"]
-script = ExtResource("1_70xra")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_n5mi0")
