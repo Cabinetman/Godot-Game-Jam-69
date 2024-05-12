@@ -9,17 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _physics_process(delta):
-	# Add the gravity.
-	#if not is_on_floor():
-	#	velocity.y += gravity * delta
-	
-	# Handle jump.
-	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-	#	velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	#var direction = Input.get_axis("ui_left", "ui_right")
 	var direction = Input.get_axis("left",'right')
 	var ydir = Input.get_axis("up","down")
 
@@ -33,6 +23,11 @@ func _physics_process(delta):
 		velocity.y = ydir * SPEED
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
-	print(velocity)
+	#print(velocity)
 
+	var viewportRect:=get_viewport_rect()
+	position.x=clamp(position.x,0,viewportRect.size.x)
+	position.y=clamp(position.y,0,viewportRect.size.y)
+
+	#print(velocity)
 	move_and_slide()
